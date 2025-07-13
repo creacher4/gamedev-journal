@@ -2,14 +2,13 @@
 layout: home
 
 hero:
-  name: VitePress
-  text: Vite & Vue powered static site generator.
-  tagline: Simple, powerful, and performant. Meet the modern SSG framework you've always wanted.
+  name: GameDev
+  tagline: A technical reference for learning game development.
   actions:
     - theme: brand
-      text: Get Started
-      link: /example
+      text: Read Notes
+      link: /cs
     - theme: alt
       text: View on GitHub
-      link: https://github.com/vuejs/vitepress
+      link: https://github.com/creacher4/gamedev-journal
 ---

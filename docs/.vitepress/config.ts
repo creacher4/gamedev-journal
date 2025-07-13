@@ -3,33 +3,45 @@ import { defineConfig } from 'vitepress';
 // refer https://vitepress.dev/reference/site-config for details
 export default defineConfig({
   lang: 'en-US',
-  title: 'VitePress',
-  description: 'Vite & Vue powered static site generator.',
+  title: 'GameDev',
+  description: 'A technical reference journal for learning game development.',
+  base: '/gamedev-journal/',
+  lastUpdated: true,
+  cleanUrls: true,
 
   themeConfig: {
     nav: [
-      { text: 'Example', link: '/example' },
-
-      // {
-      //   text: 'Dropdown Menu',
-      //   items: [
-      //     { text: 'Item A', link: '/item-1' },
-      //     { text: 'Item B', link: '/item-2' },
-      //     { text: 'Item C', link: '/item-3' },
-      //   ],
-      // },
-
-      // ...
+      { text: 'CS', link: '/cs/' },
+      { text: 'Graphics', link: '/graphics/' },
     ],
 
-    sidebar: [
+    sidebar: {
+      '/cs/': [
+        { text: 'asdhasd', link: '/cs/index' },
+      ],
+      '/graphics/': [
+        { text: 'asdasdh', link: '/graphics/index' },
+      ],
+    },
+
+    outline: {
+      level: [2, 3],
+      label: 'On this page'
+    },
+
+    search: {
+      provider: 'local',
+      options: {
+        detailedView: true,
+      }
+    },
+
+    socialLinks: [
       {
-        // text: 'Guide',
-        items: [
-          { text: 'Example', link: '/example' },
-          // ...
-        ],
-      },
+        icon: "github",
+        link: "https://github.com/creacher4/gamedev-journal",
+      }
     ],
+
   },
-});
+})
