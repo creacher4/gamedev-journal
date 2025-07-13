@@ -16,6 +16,8 @@ The distinction is mathematically significant: you can get a vector by subtracti
 
 ## Representation
 
+A vector in $n$-dimensional Euclidean space is an element of $\mathbb{R}^n$.
+
 In Euclidean space, vectors are represented as an ordered list (a tuple) of real numbers. Each number corresponds to a component along a coordinate axis.
 
 - 2D vector: $\mathbf{v} = (x, y)$
@@ -27,11 +29,9 @@ $$
 \mathbf{v} = \begin{bmatrix} x \\ y \\ z \end{bmatrix}
 $$
 
-:::info
 This convention dictates that transformations are applied by pre-multiplying the vector by a [matrix](./matrices):
 
 $$\mathbf{v}' = \mathbf{M}\mathbf{v}$$
-:::
 
 ## Basis Vectors
 
@@ -51,7 +51,7 @@ $$
 
 ### Magnitude
 
-The magnitude (or **Euclidean norm**) of a vector is its length. It's calculated using the Pythagorean theorem.
+The magnitude (or **Euclidean norm**, also called the 2-norm or $L^2$ norm) of a vector is its length. It's calculated using the Pythagorean theorem.
 
 $$
 \|\mathbf{v}\| = \sqrt{x^2 + y^2 + z^2}
@@ -93,7 +93,7 @@ $$
 a \mathbf{v} = (a v_x,\ a v_y,\ a v_z)
 $$
 
-If $a$ is negative, the vector's direction is reversed. This is used everywhere, from applying acceleration to velocity over time ($\mathbf{v} = \mathbf{v}_0 + \mathbf{a}t$) to scaling an object's size.
+If $a$ is negative, the vector's direction is reversed. This is used in time-based motion equations (e.g., $\mathbf{v} = \mathbf{v}_0 + \mathbf{a}t$), geometric scaling, and directional control.
 
 ---
 
@@ -125,6 +125,12 @@ $$\mathbf{v} \cdot \mathbf{w} < 0 \Rightarrow \text{angle is obtuse} \ (> 90^\ci
 :::warning 3D Only
 The cross product is only defined for 3D vectors.
 :::
+
+Formally, the cross product is defined as:
+
+$$
+\times : \mathbb{R}^3 \times \mathbb{R}^3 \to \mathbb{R}^3
+$$
 
 The cross product of two 3D vectors, $\mathbf{v}$ and $\mathbf{w}$, produces a new vector that is perpendicular to the plane containing both $\mathbf{v}$ and $\mathbf{w}$.
 
