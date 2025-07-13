@@ -61,7 +61,7 @@ $$
 
 ## Example: 2D Shear
 
-Consider a 2D transformation that shears vectors **horizontally**—preserving the $y$-component while adding it to the $x$-component.
+Consider a 2D transformation that shears vectors **horizontally**, preserving the $y$-component while adding it to the $x$-component.
 
 Let $T : \mathbb{R}^2 \to \mathbb{R}^2$ be defined by:
 

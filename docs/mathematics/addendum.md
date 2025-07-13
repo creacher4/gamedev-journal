@@ -55,7 +55,7 @@ Do not confuse the vector norm $\|\mathbf{v}\|$ with the scalar absolute value $
 
 ---
 
-### Dot Product (Inner Product)
+### Dot Product
 
 The dot product measures the alignment or projection of one vector onto another.
 

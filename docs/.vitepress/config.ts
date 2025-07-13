@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress';
-import markdownItKatex from 'markdown-it-katex';
+import mathjax from 'markdown-it-mathjax3';
 
 // refer https://vitepress.dev/reference/site-config for details
 export default defineConfig({
@@ -12,8 +12,7 @@ export default defineConfig({
 
   markdown: {
     config: (md) => {
-      // use markdown-it-katex for rendering LaTeX math expressions
-      md.use(markdownItKatex);
+      md.use(mathjax)
     }
   },
 

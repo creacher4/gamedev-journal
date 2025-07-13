@@ -1,4 +1,4 @@
 import DefaultTheme from 'vitepress/theme'
-import 'katex/dist/katex.min.css'
+import './mathjax.css'
 
 export default DefaultTheme
