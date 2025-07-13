@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: Read Notes
-      link: /cs
+      link: /mathematics
     - theme: alt
       text: View on GitHub
       link: https://github.com/creacher4/gamedev-journal

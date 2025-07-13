@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress';
+import markdownItKatex from 'markdown-it-katex';
 
 // refer https://vitepress.dev/reference/site-config for details
 export default defineConfig({
@@ -9,18 +10,54 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
 
+  markdown: {
+    config: (md) => {
+      // use markdown-it-katex for rendering LaTeX math expressions
+      md.use(markdownItKatex);
+    }
+  },
+
   themeConfig: {
     nav: [
-      { text: 'CS', link: '/cs/' },
+      { text: 'Maths', link: '/mathematics/' },
       { text: 'Graphics', link: '/graphics/' },
+      { text: 'Physics', link: '/physics/' },
+      { text: 'AI', link: '/ai/' },
+      { text: 'Engine', link: '/engine/' },
     ],
 
     sidebar: {
-      '/cs/': [
-        { text: 'asdhasd', link: '/cs/index' },
+      '/mathematics/': [
+        { text: 'Overview', link: '/mathematics/' },
+        { text: 'Further Reading', link: '/mathematics/further-reading' },
+        { text: 'Addendum', link: '/mathematics/addendum' },
+        { 
+          text: 'Linear Algebra',
+          collapsed: false,
+          items: [
+            { text: 'Vectors', link: '/mathematics/linear-algebra/vectors' },
+            { text: 'Matrices', link: '/mathematics/linear-algebra/matrices' },
+          ],
+        },
+        {
+          text: 'Calculus',
+          collapsed: true,
+          items: [
+            // future topics will be added here
+          ]
+        }
+      ],
+      '/physics/': [
+        { text: 'Overview', link: '/physics/' }
       ],
       '/graphics/': [
-        { text: 'asdasdh', link: '/graphics/index' },
+        { text: 'Overview', link: '/graphics/' }
+      ],
+      '/ai/': [
+        { text: 'Overview', link: '/ai/' }
+      ],
+      '/engine/': [
+        { text: 'Overview', link: '/engine/' }
       ],
     },
 
