@@ -3,15 +3,15 @@
 Vectors are mathematical objects that represent quantities with both **magnitude** and **direction**. In game development, they are used for modeling physical quantities like velocity and force, computing positions and displacements, and defining geometry in both 2D and 3D spaces.
 
 :::tip
-See the [Further Reading](/mathematics/further-reading#vectors) section for links on inner product spaces and vector spaces.
+See the [Further Reading](/mathematics/further-reading#vectors) section for links on vector spaces, inner product spaces, and other foundational topics.
 :::
 
 :::info Points vs. Vectors
 In geometry and physics, it's crucial to distinguish between a **point** and a **vector**:
-- A **Point** represents a *location* in space (e.g., a player's coordinates).
-- A **Vector** represents a *displacement* or *direction* (e.g., the direction from the player to an enemy).
+- A **Point** represents a *location* in space (an element of an [Affine Space](./affine-space)).
+- A **Vector** represents a *displacement* or *direction* (an element of a Vector Space).
 
-You can get a vector by subtracting two points: $\mathbf{v} = P_2 - P_1$. You can find a new point by adding a vector to an existing point: $P_2 = P_1 + \mathbf{v}$. However, adding two points together is not a well-defined operation.
+The distinction is mathematically significant: you can get a vector by subtracting two points ($\mathbf{v} = P_2 - P_1$), and you can find a new point by adding a vector to an existing point ($P_2 = P_1 + \mathbf{v}$). However, adding two points together is not a well-defined operation, as it lacks a meaningful geometric interpretation without a reference frame.
 :::
 
 ## Representation
@@ -21,21 +21,27 @@ In Euclidean space, vectors are represented as an ordered list (a tuple) of real
 - 2D vector: $\mathbf{v} = (x, y)$
 - 3D vector: $\mathbf{v} = (x, y, z)$
 
-While they can be written as row or column vectors, graphics APIs like OpenGL and DirectX conventionally use **column vectors**. This convention dictates the order of matrix multiplication for transformations.
+While they can be written as row or column vectors, graphics APIs like OpenGL, DirectX, and Vulkan conventionally use **column vectors**. 
 
 $$
 \mathbf{v} = \begin{bmatrix} x \\ y \\ z \end{bmatrix}
 $$
 
+:::info
+This convention dictates that transformations are applied by pre-multiplying the vector by a [matrix](./matrices):
+
+$$\mathbf{v}' = \mathbf{M}\mathbf{v}$$
+:::
+
 ## Basis Vectors
 
-The components $(x, y, z)$ of a vector have meaning only in the context of a **basis**, a set of fundamental vectors that define a coordinate system. The standard Cartesian basis vectors are:
+The components $(x, y, z)$ of a vector have meaning only in the context of a **basis**, a set of linearly independent vectors that define a coordinate system. The standard Cartesian basis vectors are mutually orthogonal and have unit length:
 
 - $\mathbf{i} = (1, 0, 0)$: A unit vector along the X-axis.
 - $\mathbf{j} = (0, 1, 0)$: A unit vector along the Y-axis.
 - $\mathbf{k} = (0, 0, 1)$: A unit vector along the Z-axis.
 
-Any vector can be expressed as a linear combination of these basis vectors:
+Any vector can be expressed as a unique linear combination of these basis vectors:
 
 $$
 \mathbf{v} = x\mathbf{i} + y\mathbf{j} + z\mathbf{k}
@@ -93,7 +99,7 @@ If $a$ is negative, the vector's direction is reversed. This is used everywhere,
 
 ### Dot Product
 
-The dot product, (or inner product) is one of the most versatile vector operations. It takes two vectors and returns a single scalar value.
+The dot product (or inner product) is one of the most versatile vector operations. It takes two vectors and returns a single scalar value that measures the "agreement" or projection of one vector onto another.
 
 It can be calculated in two ways:
 
@@ -106,16 +112,11 @@ $\mathbf{v} \cdot \mathbf{w} = v_x w_x + v_y w_y + v_z w_z$, where $v_x, v_y, v_
 components of $\mathbf{w}$.
 :::
 
-The sign of the dot product then tells you about the angle between the vectors:
+The sign of the dot product reveals the angle between the vectors:
 
 $$\mathbf{v} \cdot \mathbf{w} > 0 \Rightarrow \text{angle is acute} \ (< 90^\circ)$$
 $$\mathbf{v} \cdot \mathbf{w} = 0 \Rightarrow \text{vectors are orthogonal}$$
 $$\mathbf{v} \cdot \mathbf{w} < 0 \Rightarrow \text{angle is obtuse} \ (> 90^\circ)$$
-
-#### Use Cases
-- **Lighting**: Calculating diffuse light intensity based on the angle between a surface normal and a light ray.
-- **Projection**: Finding the "shadow" that one vector casts onto another.
-- **Culling & AI**: Checking if an object is in front of or behind another, or within a field of view.
 
 ---
 
@@ -125,7 +126,7 @@ $$\mathbf{v} \cdot \mathbf{w} < 0 \Rightarrow \text{angle is obtuse} \ (> 90^\ci
 The cross product is only defined for 3D vectors.
 :::
 
-The cross product of two 3D vectors produces a new vector that is perpendicular to both of the original vectors.
+The cross product of two 3D vectors, $\mathbf{v}$ and $\mathbf{w}$, produces a new vector that is perpendicular to the plane containing both $\mathbf{v}$ and $\mathbf{w}$.
 
 $$
 \mathbf{v} \times \mathbf{w} =
@@ -138,13 +139,9 @@ $$
 
 #### Properties
 - The resulting vector is **orthogonal** to both $\mathbf{v}$ and $\mathbf{w}$.
-- Its direction is determined by the **right-hand rule**.
+- Its direction is determined by the **right-hand rule** in a right-handed coordinate system (the standard for most graphics APIs).
 - It is **anti-commutative**: $\mathbf{v} \times \mathbf{w} = -(\mathbf{w} \times \mathbf{v})$.
-- Its magnitude is $\|\mathbf{v} \times \mathbf{w}\| = \|\mathbf{v}\| \|\mathbf{w}\| \sin(\theta)$, which is equal to the area of the parallelogram formed by the two vectors.
-
-#### Use Cases
-- **Surface Normals**: Calculating the normal vector of a triangle from two of its edge vectors.
-- **Rotational Physics**: Computing torque via $\tau = \mathbf{r} \times \mathbf{F}$.
+- Its magnitude, $\|\mathbf{v} \times \mathbf{w}\| = \|\mathbf{v}\| \|\mathbf{w}\| \sin(\theta)$, is equal to the area of the parallelogram formed by the two vectors. This is useful for computing surface areas.
 
 ## Linear Interpolation
 
@@ -154,4 +151,4 @@ $$
 \mathbf{P}(t) = (1 - t)\mathbf{P}_0 + t\mathbf{P}_1
 $$
 
-This formula is the foundation for many techniques in animation, pathfinding, and procedural generation, including Bézier curves.
+This can also be rewritten as $\mathbf{P}(t) = \mathbf{P}_0 + t(\mathbf{P}_1 - \mathbf{P}_0)$, which highlights the underlying structure: start at a point and move along a displacement vector. This formula is the foundation for many techniques in animation, pathfinding, and procedural generation.
