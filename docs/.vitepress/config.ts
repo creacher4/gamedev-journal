@@ -30,17 +30,53 @@ export default defineConfig({
       '/mathematics/': [
         { text: 'Overview', link: '/mathematics/' },
         { text: 'Further Reading', link: '/mathematics/further-reading' },
-        { text: 'Addendum', link: '/mathematics/addendum' },
-        { 
+        { text: 'Notation Addendum', link: '/mathematics/addendum' },
+
+        {
           text: 'Linear Algebra',
           collapsed: false,
           items: [
             { text: 'Vectors', link: '/mathematics/linear-algebra/vectors' },
             { text: 'Matrices', link: '/mathematics/linear-algebra/matrices' },
-          ],
+            { text: 'Linear Transformations', link: '/mathematics/linear-algebra/linear-transformations' },
+            { text: 'Affine Space', link: '/mathematics/linear-algebra/affine-space' },
+            { text: 'Affine Transformations', link: '/mathematics/linear-algebra/affine-transformations' },
+          ]
         },
+
         {
-          text: 'Calculus',
+          text: 'Geometry',
+          collapsed: true,
+          items: [
+            { text: 'Projection', link: '/mathematics/geometry/projection' },
+            { text: 'Perspective', link: '/mathematics/geometry/perspective' },
+            { text: 'Orientation', link: '/mathematics/geometry/orientation' },
+            { text: 'Orthogonal Systems', link: '/mathematics/geometry/orthogonal' },
+          ]
+        },
+
+        {
+          text: 'Rotation',
+          collapsed: true,
+          items: [
+            { text: 'Quaternions', link: '/mathematics/rotation/quaternions' },
+            { text: 'Euler Angles', link: '/mathematics/rotation/euler-angles' }
+          ]
+        },
+
+        {
+          text: 'Curves',
+          collapsed: true,
+          items: [
+            { text: 'Spline', link: '/mathematics/curves/spline' },
+            { text: 'Hermite', link: '/mathematics/curves/hermite' },
+            { text: 'Bezier', link: '/mathematics/curves/bezier' },
+            { text: 'Catmull-Rom', link: '/mathematics/curves/catmull-rom' },
+          ]
+        },
+
+        {
+          text: 'Calculus (WIP)',
           collapsed: true,
           items: [
             // future topics will be added here
